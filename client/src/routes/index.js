@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import PageLayout from '../components/PageLayout';
 import HomePage from '../views/HomePage';
+import AddPage from '../views/AddPage';
 
 const router = createBrowserRouter([
     {
@@ -9,6 +10,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />
+            },
+            {
+                path: 'add',
+                element: <AddPage />
             },
         ]
     }

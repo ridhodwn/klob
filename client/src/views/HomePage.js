@@ -15,19 +15,23 @@ function HomePage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchJobs())
-        .then(() => {
-            console.log('berhasil');
-        })
-        .catch((err) => {
-            console.log('gagal', err);
-        })
-        .catch((error) => {
-          setError(error);
-        })
-        .finally(() => {
+        if(!jobs[0]) {
+            dispatch(fetchJobs())
+            .then(() => {
+                console.log('berhasil');
+            })
+            .catch((err) => {
+                console.log('gagal', err);
+            })
+            .catch((error) => {
+            setError(error);
+            })
+            .finally(() => {
+                setLoadingJobs(false);
+            });
+        } else {
             setLoadingJobs(false);
-        });
+        }
     }, []);
 
     if (loadingJobs) {
@@ -47,6 +51,7 @@ function HomePage() {
             </style>
 
             <section className="px-5 pt-5">
+                {/* <div>{JSON.stringify(jobs)}</div> */}
                 <h4 className="page-title mb-3">LOWONGAN PEKERJAAN</h4>
                 <div className="row row-cols-md-5 mt-4">
 
