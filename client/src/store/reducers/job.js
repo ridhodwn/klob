@@ -1,8 +1,9 @@
-import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS } from "../actions/action-type";
+import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS, ADD_LAMARAN_SUCCESS } from "../actions/action-type";
 
 const intialState = {
-    jobs: localStorage ? JSON.parse(localStorage.getItem('jobs')) : [],
-    job: {}
+    jobs: (localStorage.getItem("jobs") !== null) ? [] : JSON.parse(localStorage.getItem('jobs')),
+    job: {},
+    lamaran: (localStorage.getItem("lamaran") !== null) ? [] : JSON.parse(localStorage.getItem('lamaran')),
 };
 
 function jobReducer(state = intialState, action) {
@@ -23,6 +24,16 @@ function jobReducer(state = intialState, action) {
             return {
                 ...state,
                 job: state.jobs.find(el => el.jobVacancyCode === action.payload)
+            };
+        case ADD_LAMARAN_SUCCESS:
+            if(!state.lamaran) {
+                localStorage.setItem('lamaran', JSON.stringify([state.jobs.find(el => el.jobVacancyCode === action.payload)]))
+            } else {
+                localStorage.setItem('lamaran', JSON.stringify([...state.lamaran, state.jobs.find(el => el.jobVacancyCode === action.payload)]))
+            }
+            return {
+                ...state,
+                lamaran: !state.lamaran ? [state.jobs.find(el => el.jobVacancyCode === action.payload)] : [...state.lamaran, state.jobs.find(el => el.jobVacancyCode === action.payload)]
             };
         default:
             return state

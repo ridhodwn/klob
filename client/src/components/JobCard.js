@@ -1,8 +1,12 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchJobById } from '../store/actions/action-creator';
+import { fetchJobById, addLamaran } from '../store/actions/action-creator';
 
 function JobCard({ job }) {
+    const lamaran = useSelector((state) => {
+        return state.jobReducer.lamaran;
+    });
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -10,6 +14,12 @@ function JobCard({ job }) {
         e.preventDefault();
         dispatch(fetchJobById(job.jobVacancyCode));
         navigate(`/detail-lowongan-perkerjaan/${job.jobVacancyCode}`);
+    };
+
+    const lamarAction = (e) => {
+        e.preventDefault();
+        dispatch(addLamaran(job.jobVacancyCode));
+        // navigate(`/detail-lowongan-perkerjaan/${job.jobVacancyCode}`);
     };
 
     return (
@@ -68,9 +78,13 @@ function JobCard({ job }) {
                         <p className="mb-3">Gaji: <span className="detail-item">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(job.salaryFrom)} - {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(job.salaryTo)}</span></p>
                         <p className="mb-2">Dipos pada {new Date(job.postedDate).toLocaleDateString("id", { year: "numeric", month: "short", day: "numeric" })}</p>
                         <button type="button" className="btn btn btn-link p-0" onClick={clickAction}><p>Baca Detail</p></button>
-                        <div dangerouslySetInnerHTML={{ __html: job.descriptions }} />
                     </div>
-                    <button type="button" className="btn btn-warning mx-3 mb-3">Kirim Lamaran</button> 
+                    {(lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) ? (
+                        <button type="button" className="btn btn-secondary mx-3 mb-3" disabled>Kirim Lamaran</button> 
+                        ) : (
+                        <button type="button" className="btn btn-warning mx-3 mb-3" onClick={lamarAction}>Kirim Lamaran</button>
+                        )
+                    }    
                 </div>
             </div>
         </>

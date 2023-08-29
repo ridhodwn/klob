@@ -1,4 +1,4 @@
-import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS } from "../actions/action-type";
+import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS, ADD_LAMARAN_SUCCESS } from "../actions/action-type";
 
 export const jobsFetchSuccess = payload => {
     return {
@@ -17,6 +17,13 @@ export const jobsCreateSuccess = payload => {
 export const jobFetchByIdSuccess = payload => {
     return {
         type: JOB_FETCH_BY_ID_SUCCESS,
+        payload
+    };
+};
+
+export const addLamaranSuccess = payload => {
+    return {
+        type: ADD_LAMARAN_SUCCESS,
         payload
     };
 };
@@ -45,5 +52,11 @@ export const createJob = (jobForm) => {
 export const fetchJobById = (id) => {
     return (dispatch) => {
         dispatch(jobFetchByIdSuccess(id));
+    };
+};
+
+export const addLamaran = (id) => {
+    return (dispatch) => {
+        dispatch(addLamaranSuccess(id));
     };
 };

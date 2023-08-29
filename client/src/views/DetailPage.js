@@ -1,9 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLamaran } from '../store/actions/action-creator';
 
 function JobDetail() {
     const job = useSelector((state) => {
         return state.jobReducer.job;
     });
+
+    const lamaran = useSelector((state) => {
+        return state.jobReducer.lamaran;
+    });
+
+    const dispatch = useDispatch();
+
+    const lamarAction = (e) => {
+        e.preventDefault();
+        dispatch(addLamaran(job.jobVacancyCode));
+        // navigate(`/detail-lowongan-perkerjaan/${job.jobVacancyCode}`);
+    };
 
     function timeSince(date) {
         let seconds = Math.floor((new Date() - date) / 1000);
@@ -100,7 +113,12 @@ function JobDetail() {
                         </span></p>
                         <p className="mb-2">Dipos {timeSince(new Date(job.postedDate))} yang lalu</p>
                     </div>
-                    <button type="button" className="btn btn-warning mx-3 mb-3">Kirim Lamaran</button>
+                    {(lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) ? (
+                        <button type="button" className="btn btn-secondary mx-3 mb-3" disabled>Kirim Lamaran</button> 
+                        ) : (
+                        <button type="button" className="btn btn-warning mx-3 mb-3" onClick={lamarAction}>Kirim Lamaran</button>
+                        )
+                    }  
                 </div>
             </section>
         </>
