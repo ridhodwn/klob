@@ -1,4 +1,4 @@
-import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS } from "../actions/action-type";
+import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS } from "../actions/action-type";
 
 export const jobsFetchSuccess = payload => {
     return {
@@ -10,6 +10,13 @@ export const jobsFetchSuccess = payload => {
 export const jobsCreateSuccess = payload => {
     return {
         type: JOBS_CREATE_SUCCESS,
+        payload
+    };
+};
+
+export const jobFetchByIdSuccess = payload => {
+    return {
+        type: JOB_FETCH_BY_ID_SUCCESS,
         payload
     };
 };
@@ -32,5 +39,11 @@ export const fetchJobs = () => {
 export const createJob = (jobForm) => {
     return (dispatch) => {
         dispatch(jobsCreateSuccess(jobForm));
+    };
+};
+
+export const fetchJobById = (id) => {
+    return (dispatch) => {
+        dispatch(jobFetchByIdSuccess(id));
     };
 };

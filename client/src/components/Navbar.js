@@ -24,7 +24,7 @@ function Navbar() {
                         <div>
                             <ul className="navbar-nav">
                                 <li className="nav-item me-2">
-                                    <Link className="nav-link" to="">
+                                    <Link className="nav-link" to="add">
                                         <b>Buat Lowongan</b>
                                     </Link>
                                 </li>

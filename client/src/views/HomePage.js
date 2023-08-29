@@ -15,7 +15,7 @@ function HomePage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(!jobs[0]) {
+        if(!jobs) {
             dispatch(fetchJobs())
             .then(() => {
                 console.log('berhasil');
