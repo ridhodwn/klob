@@ -1,4 +1,4 @@
-import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS, ADD_LAMARAN_SUCCESS } from "../actions/action-type";
+import { JOBS_FETCH_SUCCESS, JOBS_CREATE_SUCCESS, JOB_FETCH_BY_ID_SUCCESS, ADD_LAMARAN_SUCCESS, DELETE_LAMARAN_SUCCESS } from "../actions/action-type";
 
 const intialState = {
     jobs: (localStorage.getItem("jobs") !== null) ? [] : JSON.parse(localStorage.getItem('jobs')),
@@ -34,6 +34,12 @@ function jobReducer(state = intialState, action) {
             return {
                 ...state,
                 lamaran: !state.lamaran ? [state.jobs.find(el => el.jobVacancyCode === action.payload)] : [...state.lamaran, state.jobs.find(el => el.jobVacancyCode === action.payload)]
+            };
+        case DELETE_LAMARAN_SUCCESS:
+                localStorage.setItem('lamaran', JSON.stringify(state.lamaran.filter(el => el.jobVacancyCode !== action.payload)))
+            return {
+                ...state,
+                lamaran: state.lamaran.filter(el => el.jobVacancyCode !== action.payload)
             };
         default:
             return state

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchJobById, addLamaran } from '../store/actions/action-creator';
+import { fetchJobById, addLamaran, deleteLamaran } from '../store/actions/action-creator';
 
-function JobCard({ job }) {
+function JobCard({ job, type }) {
     const lamaran = useSelector((state) => {
         return state.jobReducer.lamaran;
     });
@@ -19,8 +19,26 @@ function JobCard({ job }) {
     const lamarAction = (e) => {
         e.preventDefault();
         dispatch(addLamaran(job.jobVacancyCode));
-        // navigate(`/detail-lowongan-perkerjaan/${job.jobVacancyCode}`);
     };
+
+    const batalAction = (e) => {
+        e.preventDefault();
+        if(lamaran.length === 1) {
+            navigate('/')
+        }
+        dispatch(deleteLamaran(job.jobVacancyCode));
+    };
+
+    let button;
+    if(type === 'lamaran') {
+        button = <button type="button" className="btn btn-danger mx-3 mb-3" onClick={batalAction}>Batalkan Lamaran</button>
+    } else {
+        if(lamaran && lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) {
+            button = <button type="button" className="btn btn-secondary mx-3 mb-3" disabled>Kirim Lamaran</button> 
+        } else {
+            button = <button type="button" className="btn btn-warning mx-3 mb-3" onClick={lamarAction}>Kirim Lamaran</button>
+        }
+    }
 
     return (
         <>
@@ -79,12 +97,7 @@ function JobCard({ job }) {
                         <p className="mb-2">Dipos pada {new Date(job.postedDate).toLocaleDateString("id", { year: "numeric", month: "short", day: "numeric" })}</p>
                         <button type="button" className="btn btn btn-link p-0" onClick={clickAction}><p>Baca Detail</p></button>
                     </div>
-                    {(lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) ? (
-                        <button type="button" className="btn btn-secondary mx-3 mb-3" disabled>Kirim Lamaran</button> 
-                        ) : (
-                        <button type="button" className="btn btn-warning mx-3 mb-3" onClick={lamarAction}>Kirim Lamaran</button>
-                        )
-                    }    
+                    { button }    
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ import PageLayout from '../components/PageLayout';
 import HomePage from '../views/HomePage';
 import AddPage from '../views/AddPage';
 import JobDetail from '../views/DetailPage';
+import LamaranPage from '../views/LamaranPage';
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: '/detail-lowongan-perkerjaan/:jobVacancyCode',
                 element: <JobDetail />
+            },
+            {
+                path: '/lamaran-terkirim',
+                element: <LamaranPage />
             },
         ]
     }

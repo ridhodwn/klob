@@ -24,7 +24,7 @@ function HomePage() {
                 console.log('gagal', err);
             })
             .catch((error) => {
-            setError(error);
+                setError(error);
             })
             .finally(() => {
                 setLoadingJobs(false);
@@ -58,7 +58,7 @@ function HomePage() {
                     {
                         jobs.map(job => {
                             return (
-                                <JobCard key={job.jobVacancyCode} job={job} />
+                                <JobCard key={job.jobVacancyCode} job={job} type="job" />
                             );
                         })
                     }

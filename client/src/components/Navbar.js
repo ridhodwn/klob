@@ -28,6 +28,11 @@ function Navbar() {
                                         <b>Buat Lowongan</b>
                                     </Link>
                                 </li>
+                                <li className="nav-item me-2">
+                                    <Link className="nav-link" to="/lamaran-terkirim">
+                                        <b>Lamaran Terkirim</b>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
