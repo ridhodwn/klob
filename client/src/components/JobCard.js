@@ -46,8 +46,14 @@ function JobCard({ job, type }) {
             {`
                 .card-img-top {
                     width: 100%;
-                    height: 8vw;
+                    height: 20vh;
                     object-fit: contain;
+                }
+
+                @media screen and (max-width: 992px) {
+                    .card-img-top {
+                        height: 30vh;
+                    }
                 }
 
                 .corp-name {
@@ -86,9 +92,13 @@ function JobCard({ job, type }) {
             `}
             </style>
         
-            <div className="col mb-4 d-flex align-items-stretch">
+            <div className="col-12 mb-4 d-flex align-items-stretch">
                 <div className="card col-12 border border-secondary rounded-3 border-opacity-25">
-                    <img src={job.corporateLogo} className="card-img-top pb-3 px-4 pt-4" />
+                    {job.corporateLogo ? 
+                        (<img src={job.corporateLogo} className="card-img-top pb-3 px-4 pt-4" />)
+                        : 
+                        (<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png"} className="card-img-top pb-3 px-4 pt-4" />)
+                    }
                     <div className="card-body px-3 pb-2">
                         <h5 className="corp-name">{job.corporateName}</h5>
                         <h6 className="job-title mb-3">{job.positionName.toUpperCase()}</h6>

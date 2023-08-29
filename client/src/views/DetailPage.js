@@ -44,9 +44,6 @@ function JobDetail() {
         }
         return Math.floor(seconds) + " detik";
     }
-    let aDay = 24*60*60*1000;
-    console.log(timeSince(new Date(Date.now()-aDay)));
-    console.log(timeSince(new Date(Date.now()-aDay*2)));
 
     return (
         <>
@@ -113,7 +110,7 @@ function JobDetail() {
                         </span></p>
                         <p className="mb-2">Dipos {timeSince(new Date(job.postedDate))} yang lalu</p>
                     </div>
-                    {(lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) ? (
+                    {(lamaran && lamaran.find(el => job.jobVacancyCode === el.jobVacancyCode)) ? (
                         <button type="button" className="btn btn-secondary mx-3 mb-3" disabled>Kirim Lamaran</button> 
                         ) : (
                         <button type="button" className="btn btn-warning mx-3 mb-3" onClick={lamarAction}>Kirim Lamaran</button>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchJobs } from '../store/actions/action-creator';
 import JobCard from '../components/JobCard';
@@ -11,7 +10,6 @@ function HomePage() {
     });
     const [error, setError] = useState(null);
     const [loadingJobs, setLoadingJobs] = useState(true);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,7 +33,7 @@ function HomePage() {
     }, []);
 
     if (loadingJobs) {
-        return <h1 className="p-4">Loading...</h1>
+        return <section className="px-5 pt-5"><h3 className="p-4">Loading...</h3></section>
     }
 
     return (
@@ -51,7 +49,6 @@ function HomePage() {
             </style>
 
             <section className="px-5 pt-5">
-                {/* <div>{JSON.stringify(jobs)}</div> */}
                 <h4 className="page-title mb-3">LOWONGAN PEKERJAAN</h4>
                 <div className="row row-cols-md-5 mt-4">
 

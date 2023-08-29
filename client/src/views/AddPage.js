@@ -53,36 +53,41 @@ function AddPage() {
                 <h5 className="page-title">BUAT LOWONGAN</h5>
                 <div className="container-fluid d-flex mt-4 pt-3 ps-0">
                     <div className="col-7">
-                        <form id="add-movie-form" onSubmit={submitForm}>
+                        <form id="add-movie-form" onSubmit={submitForm} class="was-validated">
                             <div className="d-flex align-items-center">
                                 <div className="col-3"><label htmlFor="corporate-logo"><b>Logo Perusahaan</b></label></div>
                                 <div className="col-9">
                                     <input className="form-control py-2" type="text" placeholder="Ketikan Logo Perusahaan" id="corporate-logo"
-                                        name="corporateLogo" value={jobForm.corporateLogo} onChange={changeInputHandler} />
+                                        name="corporateLogo" value={jobForm.corporateLogo} onChange={changeInputHandler} required />
+                                        <p className="text-muted mt-1 mb-0"><i>Dalam bentuk link url</i></p>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                            </div>
-                            <div className="d-flex align-items-start mb-3">
-                                <div className="col-3"></div>
-                                <div className="col-9"><p className="text-muted ms-2 mt-1 mb-0"><i>Dalam bentuk link url</i></p></div>
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <div className="col-3"><label htmlFor="corporate-name"><b>Nama Perusahaan</b></label></div>
                                 <div className="col-9">
                                     <input className="form-control py-2" type="text"  placeholder="Ketikan Nama Perusahaan" id="corporate-name"
-                                        name="corporateName" value={jobForm.corporateName} onChange={changeInputHandler} />
+                                        name="corporateName" value={jobForm.corporateName} onChange={changeInputHandler} required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <div className="col-3"><label htmlFor="position-name"><b>Nama Lowongan</b></label></div>
                                 <div className="col-9">
                                     <input className="form-control py-2" type="text" placeholder="Ketikan Nama Lowongan" id="position-name"
-                                        name="positionName" value={jobForm.positionName} onChange={changeInputHandler} />
+                                        name="positionName" value={jobForm.positionName} onChange={changeInputHandler} required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <div className="col-3"><label htmlFor="status"><b>Status Karyawan</b></label></div>
                                 <div className="col-9"><input className="form-control py-2" type="text" placeholder="Ketikan Status Karyawan" id="status"
-                                    name="status" value={jobForm.status} onChange={changeInputHandler} />
+                                    name="status" value={jobForm.status} onChange={changeInputHandler} required />
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center mb-3">
@@ -90,21 +95,28 @@ function AddPage() {
                                 <div className="col-9 d-flex align-items-center">
                                     <div className="col-5">
                                         <input className="form-control py-2" type="number" placeholder="1000000" id="salary-from"
-                                        name="salaryFrom" value={jobForm.salaryFrom} onChange={changeInputHandler} />
+                                        name="salaryFrom" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" value={jobForm.salaryFrom} onChange={changeInputHandler} required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Input number only.</div>
                                     </div>
                                     <div className="col-2">
                                         <p className="text-center m-0">sampai dengan</p>
                                     </div>
                                     <div className="col-5">
                                         <input className="form-control py-2" type="number" placeholder="1000000" id="salary-to"
-                                        name="salaryTo" value={jobForm.salaryTo} onChange={changeInputHandler} />
+                                        name="salaryTo" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" value={jobForm.salaryTo} onChange={changeInputHandler} required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Input number only.</div>
                                     </div>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <div className="col-3"><label htmlFor="posted-date"><b>Tanggal Posting</b></label></div>
-                                <div className="col-9"><input className="form-control py-2" type="date" id="posted-date"
-                                    name="postedDate" value={jobForm.postedDate} onChange={changeInputHandler} />
+                                <div className="col-9">
+                                    <input className="form-control py-2" type="date" id="posted-date"
+                                    name="postedDate" value={jobForm.postedDate} onChange={changeInputHandler} required />
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             <div className="mt-5">

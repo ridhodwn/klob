@@ -12,6 +12,15 @@ function Navbar() {
                 .title {
                     color: #DC143C;
                 }
+
+                @media screen and (max-width: 600px) {
+                    .navbar-nav {
+                        align-items: end;
+                    }
+                    .nav-link {
+                      font-size: 12px;
+                    }
+                }
             `}
             </style>
 
@@ -23,14 +32,14 @@ function Navbar() {
                         </div>
                         <div>
                             <ul className="navbar-nav">
-                                <li className="nav-item me-2">
-                                    <Link className="nav-link" to="add">
-                                        <b>Buat Lowongan</b>
+                                <li className="nav-item me-3">
+                                    <Link className="nav-link p-0" to="add">
+                                        <b className='p-0'>Buat Lowongan</b>
                                     </Link>
                                 </li>
-                                <li className="nav-item me-2">
-                                    <Link className="nav-link" to="/lamaran-terkirim">
-                                        <b>Lamaran Terkirim</b>
+                                <li className="nav-item me-3">
+                                    <Link className="nav-link p-0" to="/lamaran-terkirim">
+                                        <b className='p-0'>Lamaran Terkirim</b>
                                     </Link>
                                 </li>
                             </ul>

@@ -21,6 +21,7 @@ function jobReducer(state = intialState, action) {
                 jobs: [...state.jobs, action.payload] 
             };
         case JOB_FETCH_BY_ID_SUCCESS:
+            console.log(">>>>", state.jobs)
             return {
                 ...state,
                 job: state.jobs.find(el => el.jobVacancyCode === action.payload)
